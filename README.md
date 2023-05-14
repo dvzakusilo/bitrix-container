@@ -1,14 +1,5 @@
 ![Alt text](assets/logo.jpg?raw=true "BitrixDock")
 
-# BitrixDock
-BitrixDock позволяет легко и просто запускать **Bitrix CMS** на **Docker**.
-
-:warning: **Этот проект, для того чтобы посмотреть демо Битрикса, а не запустить продакшн сайт. Примеры реальных продакшн сайтов ищите внизу страницы.**
-
-
-## Введение
-BitrixDock запускает демо Битрикса предоставляя готовые сервисы PHP, NGINX, MySQL и многие другие.
-
 ### Преимущества данной сборки
 - Сервис PHP запакован в отдельный образ, чтобы избавить разработчиков от долгого компилирования.
 - Остальные сервисы так же "причёсаны" и разворачиваются моментально.
@@ -21,12 +12,6 @@ BitrixDock запускает демо Битрикса предоставляя
 Ваш рабочий проект должен хранится в двух местах, первое — локальная папка с проектами на хосте (открывается в IDE), второе — виртуальная машина
 (например ```/var/www/bitrix```). Проект на хосте мапится в IDE к гостевой OC.
 
-## Автоматическая установка
-```
-curl -fsSL https://raw.githubusercontent.com/bitrixdock/bitrixdock/master/install.sh -o install.sh && chmod +x install.sh && sh install.sh
-```
-
-<details><summary>Ручная установка</summary>
 <p>
 
 ## Ручная установка
@@ -52,7 +37,7 @@ wget https://www.1c-bitrix.ru/download/scripts/bitrixsetup.php && \
 cd /var/www/ && \
 git clone https://github.com/bitrixdock/bitrixdock.git && \
 cd /var/ && chmod -R 775 www/ && chown -R root:www-data www/ && \
-cd /var/www/bitrixdock
+cd /var/www/sitename
 ```
 
 ### Выполните настройку окружения
@@ -64,7 +49,7 @@ cp -f .env_template .env
 ```
 ⚠ Если у вас мак, удалите строчку `/etc/localtime:/etc/localtime/:ro` из docker-compose.yml
 
-По умолчанию используется nginx, php 7.4, mysql. Настройки можно изменить в файле ```.env```. Также можно задать путь к каталогу с сайтом и параметры базы данных MySQL.
+По умолчанию используется nginx, php 7.3, mysql. Настройки можно изменить в файле ```.env```. Также можно задать путь к каталогу с сайтом и параметры базы данных MySQL.
 
 
 ```
@@ -83,11 +68,7 @@ SITE_PATH=/var/www/bitrix        # Путь к директории Вашего
 </p>
 </details>
 
-Если у вас всё получилось, будем благодарны за звёздочку :)
-Ошибки ждём в [issue](https://github.com/bitrixdock/bitrixdock/issues)
-Приятной работы!
-
-## Запуск и остановка bitrixdock
+## Запуск и остановка 
 ### Запуск
 ```
 docker-compose up -d
@@ -125,49 +106,18 @@ P.S.
 - Для php73, php74 дефолтовые настройки xdebug - коннект на порт `9003` хоста, с которого пришел запрос. В случае невозможности коннекта - фаллбек на `host.docker.internal`.
 - При изменении `php.ini` в проекте не забудьте добавить флаг `--build` при запуске `docker-compose`, чтобы форсировать пересборку образа.
 
+## Установленные поды
+- [:]80 - spa.kant [Backend]
+- [:]3000 - spa.kant [Frontend]
+- [:]81 - kant [support]
+- [:]8989 - proxy
 
-# Ищем контрибьюторов
-Помогите развитию проекта! Требуется закрывать задачи в [issue](https://github.com/bitrixdock/bitrixdock/issues)
-
-# Пример
-Пример реального Docker проекта для Bitrix - Single Node
-https://github.com/bitrixdock/production-single-node
-
-Ещё один проект с php7 и отправкой почты, взят с боевого проекта, вырезаны пароли, сертификаты и тп
-https://github.com/bitrixdock/bitrixdock-production
-
-Ещё один production проект с memcached композитом, php8.2, почтой и кроном в контейнере и развёрнутым Readme (англ.):
-https://github.com/paskal/bitrix.infra
-
-Реальные проекты на основе этих проектов работают годами без проблем если их не трогать )
-![Alt text](assets/Clip2net_200727170318.png?raw=true "BitrixDock")
-
-# Для контрибьюторов
-1. Форкаем оригинальный проект https://github.com/bitrixdock/bitrixdock кнопкой Fork
-2. Клонируем форк себе на компьютер
-```
-git clone https://github.com/my_account/bitrixdock
-cd bitrixdock
-```
-3. Создаем новую ветку
-```
-git checkout -b myfix
-```
-4. Создаем upstream на оригинальный проект
-```
-git remote add upstream https://github.com/bitrixdock/bitrixdock
-```
-5. Меняем файлы
-6. Делаем коммит и отправляем правки
-```
-git add .
-git commit -am "My fixes"
-git push -u origin new_branch
-```
-7. Переходим в свой проект ```https://github.com/my_account/bitrixdock``` и жмем кнопку Compare & pull request
-8. Описываем какую проблему решает Пул Реквест с кратким описанием, зачем сделано изменение
-9. Вы прекрасны! ;)
-
+## Сервисы
+- [:]80 - nginx
+- [:]9000 - php
+- [:]3306 - mysql
+- [:]11211 - memcache
+- [:]9200 - elasticsearch
 
 
 

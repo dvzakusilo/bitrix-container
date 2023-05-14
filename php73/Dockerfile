@@ -26,6 +26,14 @@ COPY ./php.ini /etc/php/7.3/cli/conf.d/90-php.ini
 
 RUN usermod -u 1000 www-data
 
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    apt-get install -qq -y build-essential nodejs yarn \
+    libpq-dev \
+    mysql-client
+
 WORKDIR "/var/www/bitrix"
 
 EXPOSE 9000

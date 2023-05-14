@@ -5,6 +5,13 @@ include .env
 help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
+proxy: ## Run proxy for 8181 port, from "www-data"
+	docker-compose exec -u www-data php bash && cd /var/www/bitrix/proxy && yarn install && yarn start
+
+
+devserv: ## Run devserv for 3000 port, from "www-data"
+	docker-compose exec -u www-data php bash && cd /var/www/bitrix/spa.kant/frontend && yarn install && yarn devserv
+
 console-php: ## Run bash (PHP) from "www-data"
 	docker-compose exec -u www-data php bash
 
