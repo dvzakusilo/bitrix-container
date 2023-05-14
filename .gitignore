@@ -3,3 +3,5 @@
 .fleet
 logs
 .env
+
+*node_modules*
