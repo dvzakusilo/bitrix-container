@@ -53,13 +53,23 @@ return [
         [
             'value' =>
                 [
+//                    'default' =>
+//                        [
+//                            'className' => '\\Bitrix\\Main\\DB\\MysqliConnection',
+//                            'host' => 'db',
+//                            'database' => 'bitrix',
+//                            'login' => 'root',
+//                            'password' => '123',
+//                            'options' => 2.0,
+//                        ],
+//                Соединение для сервера разработки
                     'default' =>
                         [
                             'className' => '\\Bitrix\\Main\\DB\\MysqliConnection',
-                            'host' => 'db',
-                            'database' => 'bitrix',
-                            'login' => 'root',
-                            'password' => '123',
+                            'host' => '10.77.107.103',
+                            'database' => 'kantdb',
+                            'login' => 'kantusr',
+                            'password' => '',
                             'options' => 2.0,
                         ],
                 ],
