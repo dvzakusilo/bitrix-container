@@ -5,12 +5,17 @@ include .env
 help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-proxy: ## Run proxy for 8181 port, from "www-data"
-	docker-compose exec -u www-data php bash && cd /var/www/bitrix/proxy && yarn install && yarn start
+proxy: ## Run proxy for 8989 port, from "www-data"
+	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/proxy && npm install && npm run start"
 
+devserv:## Run devserv for 3000 port, from "www-data"
+	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/frontend && yarn install && yarn devserv"
 
-devserv: ## Run devserv for 3000 port, from "www-data"
-	docker-compose exec -u www-data php bash && cd /var/www/bitrix/spa.kant/frontend && yarn install && yarn devserv
+gulp_build: ## Run build for backend, from "www-data"
+	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/gulp && npm i && npm run gulp"
+
+elastic_index: ## Run indexation for elastic , from "www-data"
+	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/cron/ && php ./filling_elastic_tables.php"
 
 console-php: ## Run bash (PHP) from "www-data"
 	docker-compose exec -u www-data php bash

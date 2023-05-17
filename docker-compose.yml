@@ -29,7 +29,6 @@ services:
         restart: unless-stopped
     db:
         build: ./${DB_SERVER_TYPE}
-        platform: linux/amd64
         volumes:
             - ./${DB_SERVER_TYPE}/init:/docker-entrypoint-initdb.d
         volumes_from:
@@ -54,6 +53,16 @@ services:
         networks:
             - kant_network
         restart: unless-stopped
+    redis:
+        image: redis:6.2-alpine
+        restart: always
+        ports:
+            - '6379:6379'
+        command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+        volumes:
+            - cache:/data
+        networks:
+            - kant_network
     elk:
         image: sebp/elk
         ports:
@@ -81,6 +90,7 @@ services:
             - ./logs/memcached:/var/log/memcached
             - db:/var/lib/mysql
             - cache:/var/lib/memcached
+            - ./tmp:/var/www
             - ./www/html:/var/www/html
             - ${SITE_PATH}:/var/www/bitrix
 #            - /etc/localtime:/etc/localtime/:ro
