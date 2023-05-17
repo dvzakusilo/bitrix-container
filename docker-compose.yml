@@ -22,6 +22,7 @@ services:
             - '${INTERFACE}:80:80'
             - '${INTERFACE}:443:443'
             - '${INTERFACE}:3000:3000'
+            - '${INTERFACE}:8989:8989'
         links:
             - php
         networks:
