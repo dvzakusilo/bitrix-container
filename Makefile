@@ -44,6 +44,8 @@ build: ## Build Docker-project
 ps: ## Show list containers
 	docker-compose ps
 
+spa-run: up proxy devserv ## Up and build for SPA.KANT
+
 bitrix-setup: create-dir ## Download bitrixsetup.php file to the site path
 	wget http://www.1c-bitrix.ru/download/scripts/bitrixsetup.php -O ${SITE_PATH}/bitrixsetup.php
 
