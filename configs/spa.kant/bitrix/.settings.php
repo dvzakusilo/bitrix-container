@@ -83,7 +83,7 @@ return [
             'default' =>
                 [
                     'className' => '\\Bitrix\\Main\\DB\\MysqliConnection',
-                    'host' => $_ENV['DB_HOST'] ?: '10.77.107.103',
+                    'host' => $_ENV['DB_HOST'] ?: '10.77.107.42',
                     'database' => $_ENV['DB_BASE'] ?: 'kantdb',
                     'login' => $_ENV['DB_LOGIN'] ?: 'kantusr',
                     'password' => $_ENV['DB_PASS'] ?: 'wsDGS9GctpsN',

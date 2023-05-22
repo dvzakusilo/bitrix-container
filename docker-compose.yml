@@ -66,6 +66,19 @@ services:
             - kant_network
     elk:
         image: sebp/elk
+        environment:
+            node.name: elk
+            ES_JAVA_OPTS: -Xms512m -Xmx512m
+            # Bootstrap password.
+            # Used to initialize the keystore during the initial startup of
+            # Elasticsearch. Ignored on subsequent runs.
+            ELASTIC_PASSWORD: ${ELASTIC_PASSWORD:-}
+            # Use single node discovery in order to disable production mode and avoid bootstrap checks.
+            # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+            discovery.type: single-node
+            LS_JAVA_OPTS: -Xms256m -Xmx256m
+            LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+        mem_limit: 4g
         ports:
             - "5601:5601"
             - "9200:9200"

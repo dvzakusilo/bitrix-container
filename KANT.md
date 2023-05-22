@@ -8,8 +8,8 @@
 - Скопировать содержимое папки `configs/site_name`  в `www/html/site_name`
 - Собрать докер образы `docker-compose build`
 - Запустить сборку `docker-compose up`
-- Проиндексировать поисковик elasticsearch `make elastic_index`
-- Собрать фронт сайта `make gulp_build` (станет доступен на 80 порту)
+- Собрать фронт сайта `make gulp-build` (станет доступен на 80 порту)
+- Проиндексировать поисковик elasticsearch `make elastic-index`
 
 ## Постоянные команды
 - Запустить билд `make up`
