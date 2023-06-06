@@ -5,6 +5,7 @@
 - Создать файл `.env` из `.env.example`
 - Добавить в .env `DB_PASS="pass" (обязательно), DB_HOST, DB_BASE, DB_LOGIN (переопределяется если не установлено) `
 - Вернуться в текущую директорию
+- Установить зависимости в `www/html/site_name/composer install ` , `www/html/site_name/lib/composer install -ignore-platform-req=ext-phalcon`, `local/modules/kant.sitesettings/composer install`, 
 - Скопировать содержимое папки `configs/site_name`  в `www/html/site_name`
 - Собрать докер образы `docker-compose build`
 - Запустить сборку `docker-compose up`

@@ -14,7 +14,7 @@
 //$DBName = 'kant_live';
 //$DBLogin = 'kant';
 //$DBPassword = 'Ghjuhfvvf01081977';
-$_ENV = parse_ini_file('../../.env');
+$_ENV = parse_ini_file('/../../.env');
 
 $DBHost = $_ENV['DB_HOST'] ?? '10.77.107.103';
 $DBName = $_ENV['DB_BASE'] ?? 'kantdb';
