@@ -64,6 +64,18 @@ services:
             - cache:/data
         networks:
             - kant_network
+    rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+            - '5672:5672'
+            - '15672:15672'
+        volumes:
+          - ./rabbitmq/data/:/var/lib/rabbitmq/
+          - ./logs/rabbitmq:/var/log/rabbitmq/
+          - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+          - ./rabbitmq/rabbit.json:/etc/rabbitmq/rabbit.json
+        networks:
+          - kant_network
     elk:
         image: sebp/elk
         environment:
@@ -78,7 +90,10 @@ services:
             discovery.type: single-node
             LS_JAVA_OPTS: -Xms256m -Xmx256m
             LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
-        mem_limit: 4g
+#        mem_limit: 4g
+        volumes:
+            - ./elk/logstash/20-input.conf:/etc/logstash/conf.d/20-input.conf
+            - ./elk/logstash/30-output.conf:/etc/logstash/conf.d/30-output.conf
         ports:
             - "5601:5601"
             - "9200:9200"
@@ -102,6 +117,7 @@ services:
             - ./logs/php:/var/log/php
             - ./logs/db:/var/log/mysql
             - ./logs/memcached:/var/log/memcached
+            - ./logs/bitrix:/var/log/bitrix
             - db:/var/lib/mysql
             - cache:/var/lib/memcached
             - ./tmp:/var/www

@@ -10,3 +10,5 @@ logs
 www/html/kant
 www/html/spa.kant
 tmp/*
+
+rabbitmq/data
