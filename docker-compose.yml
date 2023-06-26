@@ -74,6 +74,8 @@ services:
           - ./logs/rabbitmq:/var/log/rabbitmq/
           - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
           - ./rabbitmq/rabbit.json:/etc/rabbitmq/rabbit.json
+        links:
+            - php
         networks:
           - kant_network
     elk:
