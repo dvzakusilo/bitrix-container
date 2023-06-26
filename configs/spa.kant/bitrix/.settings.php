@@ -75,13 +75,7 @@ return [
     ],
     'elastic_settings' => [
         'value' => [
-//            'services_catalog_elastic_connections' => ['127.0.0.1:9200'],
-            'services_catalog_elastic_connections' => [
-                'host' => $_ENV['ELASTIC_HOST'] ?: '10.77.107.43',
-                'port' => $_ENV['ELASTIC_PORT'] ?: '9200',
-                'user' => $_ENV['ELASTIC_USER'] ?: 'elastic',
-                'pass' => $_ENV['ELASTIC_PASS'] ?: ''
-            ],
+            'services_catalog_elastic_connections' => 'elastic@elk:9200',
             'services_elk_connections' => [
                 'host' => $_ENV['ELASTIC_ELK_HOST'] ?: '10.77.107.43',
                 'port' => $_ENV['ELASTIC_ELK_PORT'] ?: '9200',
