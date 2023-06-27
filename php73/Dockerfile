@@ -55,7 +55,6 @@ RUN npm install npm@6.14.0
 #RUN rm -rf /usr/local/lib/node_modules/npm
 #RUN mv node_modules/npm /usr/local/lib/node_modules/npm
 
-RUN usermod -u 1000 www-data
 
 WORKDIR "/var/www/bitrix"
 

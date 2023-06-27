@@ -122,8 +122,7 @@ services:
             - ./logs/bitrix:/var/log/bitrix
             - db:/var/lib/mysql
             - cache:/var/lib/memcached
-            - ./tmp:/var/www
-            - ./www/html:/var/www/html
+            - ./www/html:/var/www/html:ro
             - ${SITE_PATH}:/var/www/bitrix
 #            - /etc/localtime:/etc/localtime/:ro
         networks:
