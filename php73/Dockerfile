@@ -35,27 +35,23 @@ RUN apt-get update \
 COPY ./php.ini /etc/php/7.3/fpm/conf.d/90-php.ini
 COPY ./php.ini /etc/php/7.3/cli/conf.d/90-php.ini
 
-
-#RUN chmode 777 /var/www/.npm
-
-
-
-
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && \
-    apt-get install -qq -y build-essential nodejs yarn \
-    libpq-dev 
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-WORKDIR "/var/www/"
+RUN chown -R www-data:www-data "/var/www/"
+
+WORKDIR "/home/www-data/"
+
+RUN usermod  -u 33 www-data
+
+
+RUN apt-get update && \
+    apt-get install -qq -y build-essential nodejs yarn \
+    libpq-dev  
+
 
 
 RUN npm install npm@6.14.0
-#RUN rm -rf /usr/local/lib/node_modules/npm
-#RUN mv node_modules/npm /usr/local/lib/node_modules/npm
-
-
-WORKDIR "/var/www/bitrix"
 
 EXPOSE 9000
