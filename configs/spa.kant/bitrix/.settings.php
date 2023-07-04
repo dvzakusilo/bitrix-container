@@ -22,60 +22,10 @@ return [
             'read_timeout' => 1,
         ],
     ],
-    'rabbitmq' => [
-        'value' => [
-            'connections' => [
-                'default' => [
-                    'host' => '172.17.0.2',
-                    'port' => 5672,
-                    'user' => 'guest',
-                    'password' => 'guest',
-                    'vhost' => '/',
-                    'lazy' => false,
-                    'connection_timeout' => 3.0,
-                    'read_write_timeout' => 3.0,
-                    'keepalive' => false,
-                    'heartbeat' => 0,
-                    'use_socket' => true,
-                ],
-                'elk' => [
-                    'host' => 'rabbitmq',
-                    'port' => 5672,
-                    'user' => 'guest',
-                    'password' => 'guest',
-                    'vhost' => '/',
-                    'lazy' => false,
-                    'connection_timeout' => 3.0,
-                    'read_write_timeout' => 3.0,
-                    'keepalive' => false,
-                    'heartbeat' => 0,
-                    'use_socket' => true,
-                ],
-            ],
-            'producers' => [
-                'logs' => [
-                    'connection' => 'elk',
-                    'exchange_options' => [
-                        'name' => 'logs',
-                        'type' => 'direct',
-                    ],
-                ],
-            ],
-            'consumers' => [
-                'logs' => [
-                    'connection' => 'elk',
-                    'exchange_options' => [
-                        'name' => 'logs',
-                        'type' => 'direct',
-                    ]
-                ],
-            ],
-        ],
-        'readonly' => false,
-    ],
+    
     'elastic_settings' => [
         'value' => [
-            'services_catalog_elastic_connections' => 'elastic@elk:9200',
+            'services_catalog_elastic_connections' => 'elastic@10.77.107.43:9200',
             'services_elk_connections' => [
                 'host' => $_ENV['ELASTIC_ELK_HOST'] ?: '10.77.107.43',
                 'port' => $_ENV['ELASTIC_ELK_PORT'] ?: '9200',
@@ -136,55 +86,6 @@ return [
         ),
         'readonly' => false
     ),
-    'monolog' => array(
-        'value' => array(
-            'formatters' => array(
-                'NativeMailerFormatter' => array(
-                    'class' => '\Monolog\Formatter\HtmlFormatter',
-                ),
-                'StreamHandlerFormatter' => array(
-                    'class' => '\Monolog\Formatter\LineFormatter',
-                    "format" => "%datetime% > %level_name% > %message% %context% %extra%\n",
-                    "dateFormat" => "Y n j, g:i a"
-                ),
-                'elk' => array(
-                    'class' => '\Monolog\Formatter\LogstashFormatter',
-                    'applicationName' => 'kant_web',
-                    'systemName' => $_SERVER['REMOTE_ADDR']
-                )
-            ),
-            'handlers' => array(
-                'default' => array(
-                    'class' => '\Monolog\Handler\StreamHandler',
-                    'level' => 'DEBUG',
-                    'stream' => '/var/log/bitrix/bitrix-error.log'
-                ),
-                'feedback_event_log' => array(
-                    'class' => '\Bex\Monolog\Handler\BitrixHandler',
-                    'level' => 'DEBUG',
-                    'event' => 'TYPE_FOR_EVENT_LOG',
-                    'module' => 'vendor.module'
-                ),
-                'elk_event_log' => array(
-                    'class' => '\Handler\Monolog\ELKHandler',
-                    'level' => 'DEBUG',
-                    'formatter' => "elk"
-                ),
-            ),
-            'loggers' => array(
-                'app' => array(
-                    'handlers'=> array('default'),
-                ),
-                'feedback' => array(
-                    'handlers'=> array('feedback_event_log'),
-                ),
-                'elk' => array(
-                    'handlers'=> array('elk_event_log'),
-                )
-            )
-        ),
-        'readonly' => false
-    ),
     'connections' => [
         'value' => [
             /** { @internal Подключение к дев серверу } */
@@ -194,7 +95,7 @@ return [
                     'host' => $_ENV['DB_HOST'] ?: '10.77.107.42',
                     'database' => $_ENV['DB_BASE'] ?: 'kantdb',
                     'login' => $_ENV['DB_LOGIN'] ?: 'kantusr',
-                    'password' => $_ENV['DB_PASS'] ?: 'wsDGS9GctpsN',
+                    'password' => $_ENV['DB_PASS'] ?: '',
                     'options' => 2.0,
                 ],
             /** { @internal Подключение к дев докеру } */
