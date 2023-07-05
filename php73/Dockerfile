@@ -8,13 +8,14 @@ RUN echo "deb https://debian.octopuce.fr/snapshots/sury-php/20220630/ stretch ma
 RUN mkdir -p /usr/src/php/ext/redis; \
 	curl -fsSL https://pecl.php.net/get/redis --ipv4 | tar xvz -C "/usr/src/php/ext/redis" --strip 1; 
 
+
 RUN apt-get update \
     && apt-get -y --no-install-recommends install \
     zlib1g-dev libbz2-dev bz2 \
     && pecl install mcrypt-1.0.3 redis  \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* 
 
-RUN docker-php-ext-install  mysqli mbstring zip gd  redis soap
+RUN docker-php-ext-install  mysqli mbstring zip gd  redis soap 
 RUN docker-php-ext-enable mysqli  redis
 
 # DO NOT install php7.3-xdebug package for site running in production! It will slow it down significantly.
