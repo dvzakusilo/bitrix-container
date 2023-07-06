@@ -9,7 +9,7 @@
 - Создать файл `.env` из `.env.example`
 - Собрать докер образы `docker-compose build`
 - Запустить сборку `docker-compose up`
-- Установить зависимости в (Сначала войдите в конейнер `make console-php`) `/var/www/bitrix/site_name/composer install ` , `/var/www/bitrix/site_name/lib/composer install -ignore-platform-req=ext-phalcon`, `local/modules/kant.sitesettings/composer install`, 
+- Установить зависимости в (Сначала войдите в конейнер `make console-php`) `/var/www/bitrix/site_name/composer install ` , `/var/www/bitrix/site_name/lib/composer install -ignore-platform-req=ext-phalcon`, `/var/www/bitrix/site_name/local/modules/kant.sitesettings/composer install`, 
 - Собрать фронт сайта `make gulp-build` (станет доступен на 80 порту)
 - Проиндексировать поисковик elasticsearch `make elastic-index`
 
