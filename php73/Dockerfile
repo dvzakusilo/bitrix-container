@@ -15,7 +15,7 @@ RUN apt-get update \
     && pecl install mcrypt-1.0.3 redis  \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* 
 
-RUN docker-php-ext-install  mysqli mbstring zip gd  redis soap 
+RUN docker-php-ext-install  mysqli mbstring zip gd  redis soap sockets pdo pdo_mysql
 RUN docker-php-ext-enable mysqli  redis
 
 # DO NOT install php7.3-xdebug package for site running in production! It will slow it down significantly.
