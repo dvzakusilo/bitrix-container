@@ -46,6 +46,11 @@ ps: ## Show list containers
 
 up-proxy: up proxy ## Up and build proxy for SPA.KANT
 
+run: # Start frontend services
+	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/frontend && yarn install && pm2 start --name frontend 'yarn devserv'  && cd ../../proxy && pm2 start npm --name 'proxy' -- start "
+
+restart: up run
+
 bitrix-setup: create-dir ## Download bitrixsetup.php file to the site path
 	wget http://www.1c-bitrix.ru/download/scripts/bitrixsetup.php -O ${SITE_PATH}/bitrixsetup.php
 

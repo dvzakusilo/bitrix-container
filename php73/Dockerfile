@@ -38,7 +38,8 @@ RUN chmod 755 /usr/local/bin/composer
 
 RUN apt-get update && \
     apt-get install -qq -y build-essential nodejs yarn \
-    libpq-dev  
+    libpq-dev  && \
+    npm install pm2 -g
 
 
 
