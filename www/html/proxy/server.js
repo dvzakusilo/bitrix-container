@@ -33,7 +33,7 @@ const servers = {
   'arcsinus:test':'https://test:test@arcsinus.kant.ru',
   'p4':'https://p4.kant.ddp-dev.ru',
   'p5':'https://p5.kant.ddp-dev.ru',
-  'ddp':'https://ddp.kant.ru/api',
+  'ddp':'https://ddp.kant.ru',
   'spa':'https://spa.kant.ru',
   'arcsinus':'https://arcsinus.kant.ru',
 }
