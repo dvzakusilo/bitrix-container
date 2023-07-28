@@ -22,6 +22,7 @@ RUN docker-php-ext-enable mysqli  redis
 
 COPY ./php.ini /etc/php/7.3/fpm/conf.d/90-php.ini
 COPY ./php.ini /etc/php/7.3/cli/conf.d/90-php.ini
+COPY ./php.ini /usr/local/etc/php/conf.d/90-php.ini
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \

@@ -25,7 +25,7 @@ define("BX_DISABLE_INDEX_PAGE", true);
 
 //define("BX_COMP_MANAGED_CACHE", true);
 
-define("BX_TEMPORARY_FILES_DIRECTORY", "/home/kant/tmp/");
+define("BX_TEMPORARY_FILES_DIRECTORY", "/var/log/bitrix/knt/tmp/");
 
 //define('BX_CACHE_TYPE', 'apc');
 //define('BX_CACHE_SID', $_SERVER['DOCUMENT_ROOT'].'#01');

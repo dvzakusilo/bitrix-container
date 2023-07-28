@@ -16,7 +16,7 @@
 //$DBPassword = 'Ghjuhfvvf01081977';
 $_ENV = parse_ini_file('/../../.env');
 
-$DBHost = $_ENV['DB_HOST'] ?? '10.77.107.103';
+$DBHost = $_ENV['DB_HOST'] ?? '10.77.107.42';
 $DBName = $_ENV['DB_BASE'] ?? 'kantdb';
 $DBLogin = $_ENV['DB_LOGIN'] ?? 'kantusr';
 $DBPassword = $_ENV['DB_PASS'] ?? 'wsDGS9GctpsN';
