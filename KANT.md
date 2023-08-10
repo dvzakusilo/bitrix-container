@@ -5,10 +5,11 @@
 - Создать файл `.env` из `.env.example`
 - Добавить в .env `DB_PASS="pass" (обязательно), DB_HOST, DB_BASE, DB_LOGIN (переопределяется если не установлено) `
 - Вернуться в текущую директорию
-- Установить зависимости в `www/html/site_name/composer install ` , `www/html/site_name/lib/composer install -ignore-platform-req=ext-phalcon`, `local/modules/kant.sitesettings/composer install`, 
 - Скопировать содержимое папки `configs/site_name`  в `www/html/site_name`
+- Создать файл `.env` из `.env.example`
 - Собрать докер образы `docker-compose build`
 - Запустить сборку `docker-compose up`
+- Установить зависимости в (Сначала войдите в конейнер `make console-php`) `/var/www/bitrix/site_name/composer install ` , `/var/www/bitrix/site_name/lib/composer install -ignore-platform-req=ext-phalcon`, `/var/www/bitrix/site_name/local/modules/kant.sitesettings/composer install`, 
 - Собрать фронт сайта `make gulp-build` (станет доступен на 80 порту)
 - Проиндексировать поисковик elasticsearch `make elastic-index`
 

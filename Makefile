@@ -12,7 +12,7 @@ devserv:## Run devserv for 3000 port, from "www-data"
 	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/frontend && yarn install && yarn devserv"
 
 gulp-build: ## Run build for backend, from "www-data"
-	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/gulp && npm i && npm run gulp"
+	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/gulp && npm i && npm run gulp build"
 
 elastic-index: ## Run indexation for elastic , from "www-data"
 	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/cron/ && php ./filling_elastic_tables.php"
@@ -45,6 +45,11 @@ ps: ## Show list containers
 	docker-compose ps
 
 up-proxy: up proxy ## Up and build proxy for SPA.KANT
+
+run: # Start frontend services
+	docker-compose exec -u www-data php bash -c  "cd /var/www/bitrix/spa.kant/frontend && yarn install && pm2 start --name frontend 'yarn devserv'  && cd ../../proxy && pm2 start npm --name 'proxy' -- start "
+
+restart: up run
 
 bitrix-setup: create-dir ## Download bitrixsetup.php file to the site path
 	wget http://www.1c-bitrix.ru/download/scripts/bitrixsetup.php -O ${SITE_PATH}/bitrixsetup.php
